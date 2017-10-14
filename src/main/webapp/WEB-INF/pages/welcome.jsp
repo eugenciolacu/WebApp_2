@@ -9,7 +9,23 @@
     <title></title>
 </head>
 <body>
-<h1>Hi, Welcome to our super-puper secret page!</h1>
-<p>Next, you can see the full list of <a href="/showFemales">girls</a> or <a href="/showMales">boys</a></p>
+    <form:form method="GET" action="/showSpecificUsers">
+        <h1>Hi, Welcome to our super-puper secret page!</h1>
+        <p>Next, you can see the full list of
+            <select name="gender">
+                <option value="FEMALE" selected>girls</option>
+                <option value="MALE">boys</option>
+            </select>
+
+            and you can specify their age
+
+            <select name="age">
+                <option value="18">18</option>
+                <option value="20">20</option>
+            </select>
+
+            <button type="submit">Submit</button></p>
+        </p>
+    </form:form>
 </body>
 </html>

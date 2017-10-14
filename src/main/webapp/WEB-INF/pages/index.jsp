@@ -28,6 +28,10 @@
                 <p>
                 <input type="radio" name="gender" value="MALE" checked>Male
                 <input type="radio" name="gender" value="FEMALE">Female<br></p>
+
+                <label>Age</label>
+                <input type= "text" name = "age" required = "required" />
+
                 <button type="submit">Login</button>
             </div>
         </form:form>

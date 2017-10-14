@@ -1,0 +1,6 @@
+com\springapp\mvc\datasource\UsersDatabaseImitation.class
+com\springapp\mvc\controller\UserController.class
+com\springapp\mvc\model\User.class
+com\springapp\mvc\model\Gender.class
+com\springapp\mvc\datasource\UsersDao.class
+com\springapp\mvc\service\UserService.class

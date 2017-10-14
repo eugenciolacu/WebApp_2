@@ -1,5 +1,6 @@
 package com.springapp.mvc.controller;
 
+import com.springapp.mvc.model.Gender;
 import com.springapp.mvc.model.User;
 import com.springapp.mvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import static com.springapp.mvc.model.Gender.*;
 
@@ -54,4 +56,11 @@ public class UserController {
         return "gender";
     }
 
+    @RequestMapping(value = "/showSpecificUsers", method = RequestMethod.GET)
+    public String showSpecificUsers(Model model, @RequestParam int age, @RequestParam Gender gender) {
+        model.addAttribute("gender", (gender == FEMALE) ? "girls" : "boys");
+        model.addAttribute("age", age);
+        model.addAttribute("list", userService.getAllByGenderAndAge(gender, age));
+        return "genderAndAge";
+    }
 }

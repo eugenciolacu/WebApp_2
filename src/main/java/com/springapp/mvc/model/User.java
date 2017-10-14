@@ -1,23 +1,44 @@
 package com.springapp.mvc.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class User {
+
+//    @GeneratedValue (strategy = GenerationType.IDENTITY)
+//    @Column (name = "id")
+//    private int id;
+
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column (name = "name")
     private String name;
+
+    @Column (name = "password")
     private String password;
+
+    @Column (name = "gender")
+    @Enumerated(EnumType.STRING)
     private Gender gender;
+
+    @Column (name = "age")
+    private int age;
 
     public User(){
         //for hibernate
     }
 
-    public User(String name, String password) {
-        this.name = name;
-        this.password = password;
-    }
-
-    public User(String name, String password, Gender gender) {
+    public User(String name, String password, Gender gender, int age) {
         this.name = name;
         this.password = password;
         this.gender = gender;
+        this.age = age;
+    }
+
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
     }
 
     public String getName() {
@@ -36,12 +57,21 @@ public class User {
         this.password = password;
     }
 
+    @Enumerated(EnumType.STRING)
     public Gender getGender() {
         return gender;
     }
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override
@@ -51,16 +81,18 @@ public class User {
 
         User user = (User) o;
 
-        if (name != null ? !name.equals(user.name) : user.name != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (age != user.age) return false;
+        if (!name.equals(user.name)) return false;
+        if (!password.equals(user.password)) return false;
         return gender == user.gender;
     }
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (gender != null ? gender.hashCode() : 0);
+        int result = name.hashCode();
+        result = 31 * result + password.hashCode();
+        result = 31 * result + gender.hashCode();
+        result = 31 * result + age;
         return result;
     }
 
@@ -70,6 +102,7 @@ public class User {
                 "name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", gender=" + gender +
+                ", age=" + age +
                 '}';
     }
 }
